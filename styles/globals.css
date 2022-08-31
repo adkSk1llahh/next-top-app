@@ -20,7 +20,9 @@ a {
 :root{
   --black: #3B434E;
   --white: #fff;
+  --gray-light: #ebebeb;
   --primary: #7653fc;
+  --primary-hover: #4423c3;
   --red: #fc836d;
   --green: #1dc37e;
   --green-light: #c8f8e4;
