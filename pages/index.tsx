@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Htag, P, Rating, Tag} from "../components";
 import {withLayout} from "../layout/Layout";
+import {GetStaticProps} from "next";
 
 
 const Home = () => {
@@ -19,3 +20,15 @@ const Home = () => {
 }
 
 export default withLayout(Home)
+
+export const getStaticProps: GetStaticProps = async () => {
+  const firstCategory = 0
+  const {data:menu} = await axios.post(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find')
+
+  return{
+    props:{
+      menu,
+      firstCategory
+    }
+  }
+}
