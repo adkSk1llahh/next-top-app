@@ -5,7 +5,7 @@ import {TopLevelCategory} from "../interfaces/page.interface";
 export interface IAppContext{
   menu: MenuItem[]
   firstCategory:TopLevelCategory
-  setMenu?:(newMenu:MenuItem) => void
+  setMenu?: (newMenu: MenuItem[]) => void
 
 }
 
@@ -15,7 +15,7 @@ export const AppContextProvider = ({menu, firstCategory, children}:PropsWithChil
 
   const [menuState, setMenuState] = useState<MenuItem[]>(menu)
 
-  const setMenu = (newMenu: MenuItem[]) => {
+  const setMenu = (newMenu: MenuItem[]):void => {
     setMenuState(newMenu)
   }
 
