@@ -5,7 +5,7 @@ import { Card } from '../Card/Card';
 import { Rating } from '../Rating/Rating';
 import { Tag } from '../Tag/Tag';
 import { Button } from '../Button/Button';
-import { declOfNum, priceRu } from '../../helpers/helpers';
+import { declOfNum } from '../../helpers/helpers';
 import { Divider } from '../Divider/Divider';
 import Image from 'next/image';
 import { ForwardedRef, forwardRef, useRef, useState } from 'react';
@@ -44,15 +44,15 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 				</div>
 				<div className={styles.title}>{product.title}</div>
 				<div className={styles.price}>
-					<span><span className="visualyHidden">цена</span>{priceRu(product.price)}</span>
+					<span><span className="visualyHidden">цена</span>{product.price}</span>
 					{product.oldPrice && <Tag className={styles.oldPrice} color="green">
 						<span className="visualyHidden">скидка</span>
-						{priceRu(product.price - product.oldPrice)}
+						{product.price - product.oldPrice}
 					</Tag>}
 				</div>
 				<div className={styles.credit}>
 					<span className="visualyHidden">кредит</span>
-					{priceRu(product.credit)}/<span className={styles.month}>мес</span>
+					{product.credit}/<span className={styles.month}>мес</span>
 				</div>
 				<div className={styles.rating}>
 					<span className="visualyHidden">{'рейтинг' + (product.reviewAvg ?? product.initialRating)}</span>

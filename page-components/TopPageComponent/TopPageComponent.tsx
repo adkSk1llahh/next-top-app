@@ -1,12 +1,22 @@
 import {TopPageComponentProps} from "./TopPageComponent.props";
-import React from "react";
-import {Htag, P, Tag} from "../../components";
+import React, {useReducer} from "react";
+import {Htag, Tag} from "../../components";
 import styles from './TopPageComponent.module.css'
 import {TopLevelCategory} from "../../interfaces/page.interface";
 import {HhData} from "../../components/HhData/HhData";
 import {Advantages} from "../../components/Advantages/Advantages";
+import {Sort} from "../../components/Sort/Sort";
+import {SortEnum} from "../../components/Sort/Sort.props";
+import {sortReducer} from "./sort.reducer";
+import {Product} from "../../components/Product/Product";
 
 export const TopPageComponent = ({page, products, firstCategory}:TopPageComponentProps):JSX.Element => {
+  const [{products: sortedProducts, sort}, dispatchSort] = useReducer(sortReducer, {products, sort: SortEnum.Rating})
+
+  const setSort = (sort: SortEnum) => {
+    dispatchSort({type:sort})
+  }
+
   return(
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -20,15 +30,13 @@ export const TopPageComponent = ({page, products, firstCategory}:TopPageComponen
           </Tag>
         }
 
-        <span>Сортировка</span>
+        <Sort sort={sort} setSort={setSort}/>
 
       </div>
 
       <div>
         {products && products.map(p => (
-          <div key={p._id}>
-            {p.title}
-          </div>
+          <Product product={p} key={p._id}/>
         ))}
       </div>
 
@@ -54,7 +62,7 @@ export const TopPageComponent = ({page, products, firstCategory}:TopPageComponen
       }
 
       {
-        page.seoText && <P>{page.seoText}</P>
+        page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{__html: page.seoText}} />
       }
 
       <Htag tag='h2'>
