@@ -8,7 +8,7 @@ import { Button } from '../Button/Button';
 import { declOfNum } from '../../helpers/helpers';
 import { Divider } from '../Divider/Divider';
 import Image from 'next/image';
-import { ForwardedRef, forwardRef, useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 import { motion } from 'framer-motion';
@@ -40,6 +40,7 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 						alt={product.title}
 						width={70}
 						height={70}
+
 					/>
 				</div>
 				<div className={styles.title}>{product.title}</div>
